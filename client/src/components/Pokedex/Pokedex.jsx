@@ -1,4 +1,4 @@
-// import './pokedex.css';
+import './pokedex.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -16,33 +16,42 @@ const pokedex = {
     }
 }
 
+function searchBarHandler(name) {
+    setPokemon(name);
+}
+
 const Pokedex = () => {
     const [pokemon, setPokemon] = useState('pikachu');
-    const result = []
+    const [sprites, setSprites] = useState([]);
 
     useEffect(() => {
+        let newSprites = [];
+
         (async () => {
-            const sprites = await pokedex.getSprites('pikachu');
+            const response = await pokedex.getSprites('pikachu');
 
-            Object.entries(sprites).forEach( array => {
-                result.push({[array[0]]: array[1]});
+            Object.entries(response).forEach( entry => {
+                newSprites.push({[entry[0]]: entry[1]});
             })
-            console.log(result);
+            
+            setSprites(newSprites);
         })();
-
-        
-    }, [])
-
+    }, [pokemon])
+    
     return (
         <div>
             <h1>Pokedex</h1>
-            <div className="pikachu-sprite">
-                {/* {sprites.forEach( sprite => {
+            <div className="sprites pikachu-sprite">
+                {/* {console.log(Object.keys(sprites[0]), Object.values(sprites[0]))} */}
+                {sprites.map( sprite => {
                     return (
-                        <img src={sprite.value} alt={sprite.key} className={`pikachu__sprite ${sprite.key}`} />
+                        <div className="sprite-card">
+                            <img src={Object.values(sprite)} alt={Object.keys(sprite)} className={`${Object.keys(sprite)}-sprite`} />
+                            <p className="sprite-key">{Object.keys(sprite)}</p>
+                        </div>
                     )
-                })
-                } */}
+                })}
+                
             </div>
         </div>
     )
