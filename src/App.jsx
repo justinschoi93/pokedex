@@ -10,8 +10,8 @@ function App() {
 
   return (
     <PokemonContext.Provider value={{ pokeData, setPokeData, pokemon, setPokemon }}>
-      <Pokedex/>
       <SearchBar/>
+      <Pokedex/>
     </PokemonContext.Provider>
   )
 }
