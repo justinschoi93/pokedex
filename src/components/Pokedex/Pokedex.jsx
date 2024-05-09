@@ -1,24 +1,23 @@
 import './pokedex.css'
 import { useContext } from 'react'
-import PokemonContext from '../PokemonContext/PokemonContext'
+import PokemonContext from './PokemonContext'
 
 const Pokedex = () => {
-  const { pokemon } = useContext(PokemonContext);
-  console.log(pokemon)
+  const { pokeData } = useContext(PokemonContext);
 
     return (
-        <div id="pokedex">
-            <div id="picture">
-              <img src={pokemon.sprite} alt={pokemon.species} height="170" />
+        <div className="pokedex__container">
+            <div className="screen">
+              <img src={pokeData.sprite} alt={pokeData.species} height="170" />
             </div>
         <div id="right">
           <div id="stats">
-            <strong>Name: </strong>{pokemon.name}<br/>
-            <strong>Type: </strong>{pokemon.type}<br/>
-            <strong>Height: </strong>{pokemon.height}<br/>
-            <strong>Weight: </strong><br/>{pokemon.weight}<br/>
-            <strong>Description: </strong>{pokemon.description}<br/>
-            <strong>Abilities: </strong><br/>{pokemon.abilities}<br/>
+            <strong>Name: </strong>{pokeData.name}<br/>
+            <strong>Type: </strong>{pokeData.type}<br/>
+            <strong>Height: </strong>{pokeData.height}<br/>
+            <strong>Weight: </strong><br/>{pokeData.weight}<br/>
+            <strong>Description: </strong>{pokeData.description}<br/>
+            <strong>Abilities: </strong><br/>{pokeData.abilities}<br/>
           </div>
         </div>
       </div>
