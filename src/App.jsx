@@ -5,10 +5,11 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [pokeData, setPokeData] = useState({})
+  const [pokeData, setPokeData] = useState({});
+  const [pokemon, setPokemon ] = useState([]);
 
   return (
-    <PokemonContext.Provider value={{ pokeData, setPokeData }}>
+    <PokemonContext.Provider value={{ pokeData, setPokeData, pokemon, setPokemon }}>
       <Pokedex/>
       <SearchBar/>
     </PokemonContext.Provider>
